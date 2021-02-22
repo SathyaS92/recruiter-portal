@@ -1,0 +1,33 @@
+
+  <div style="border:2px solid #313D77;border-radius: 10px;margin-bottom:1.7%; width: 90%;margin-left: 4.9%;">
+    <div class="modal-body" style="margin-top:0.5%;margin-bottom:1%">   
+    <h1 style="color:#313D77;text-align: center;">Applied Other Jobs</h1>
+    <div class="mid-section" style="margin-top:4%;position:relative;width: 100%;">
+        <div class="example-wrapper" style="height:400px;width:100%;position:relative;left:2.5%">
+          <ag-grid-angular
+            #agGrid
+            style="width: 95%; height: 96%;"
+            id="myGrid"
+            class="ag-theme-alpine"
+            [columnDefs]="columnDefs"        
+            [defaultColDef]="defaultColDef"
+            [suppressRowClickSelection]="true"  
+            [suppressLoadingOverlay]="true"
+            [pagination]="true"
+            [rowData]="candidatesList"  
+            [overlayNoRowsTemplate]="noRowsTemplate"
+            [paginationPageSize]="paginationPageSize"
+            [paginationNumberFormatter]="paginationNumberFormatter"
+            (gridReady)="onGridReady($event)"                   
+          ></ag-grid-angular>
+        </div> 
+      </div>
+  </div>
+</div>
+  <!-- </div> -->
+  <div class="loading-container" style="width: 100%; display: none; height: 100%; padding: 5px 15%;"
+  id="loadingCandidateDetailed">
+  <div class="loader" style="top:38%;"></div>
+  </div>
+
+  <!-- style="min-height:570px;border:2px solid #313D77;width:90%;margin-left:4.9%;margin-bottom:1.7%;" -->

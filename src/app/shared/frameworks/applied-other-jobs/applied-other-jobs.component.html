@@ -1,0 +1,26 @@
+<div style="display: block;position: relative;left: 33%;">
+<span *ngIf="params.data.other_Interested_Jobs > 0"  (click)="detailedView(content,params)" style="background-color: #121f66;cursor:pointer;font-size: 1.1em;" class="badge badge-primary">{{params.data.other_Interested_Jobs}}</span>
+</div>
+<div style="display: block;position: relative;left: 33%;">
+<span *ngIf="params.data.other_Interested_Jobs == 0" style="background-color: #121f66;font-size:1.1em;" class="badge badge-primary">{{params.data.other_Interested_Jobs}}</span>
+</div>
+
+<ng-template #content let-modal>
+        
+    <!-- <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div> -->
+  
+      <span style="justify-content: flex-end;display: flex;position: relative;right: 1%;top:3.5px;cursor:pointer;" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span>&times;</span>
+      </span>
+      <div class="modal-body">
+        <app-applied-other-jobs-detailed [candidateID]="candidateID">
+            </app-applied-other-jobs-detailed>
+      </div>
+  
+  
+    </ng-template>

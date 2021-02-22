@@ -1,0 +1,36 @@
+.wrap {
+    white-space: nowrap; 
+    width: auto;   
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .htooltipCustomer:hover {
+    color: #0099CC;
+}
+
+.htooltipCustomer:hover span {
+    display: block;
+}
+
+  .htooltipCustomer .customerSpan {
+    display : none;
+    position: absolute;
+    background-color: black;
+    color: #fff;
+    padding: 5px 10px 5px 40px;
+    text-decoration: none;
+    width: 350px;
+    z-index: 10;
+}
+
+.htooltipCustomer, .htooltipCustomer:visited, .htooltipCustomer:active {
+    color: #0077AA;
+    text-decoration: none;
+}
+
+@media (min-width: 1500px){
+  #myGrid{
+  height: 66.2%!important;
+  }
+}

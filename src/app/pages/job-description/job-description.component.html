@@ -1,0 +1,67 @@
+<div class="section" style="height:560px;">
+<div class="row">
+    <h4 style="position:relative;left:3%;color: #313d77;"><b>Step 2 of 3</b></h4>
+    <h4 style="position:relative;left:36%;color: #313d77;"><b>Job Description</b></h4>
+</div>
+<!-- <div class="row">
+   
+</div> -->
+
+<div class="flex-container" style="margin-top:1%;width:100%;justify-content: space-evenly;">
+ 
+    <div class="wrap" placement="bottom" container="body" ngbPopover="{{jobDescriptionFormGroup.value.jobID}}" triggers="mouseenter:mouseleave" style="max-width: 12%;cursor: pointer;"><span style="position:relative;"><b>Job ID: {{jobDescriptionFormGroup.value.jobID}}</b></span> </div>
+      
+    <div class="wrap" placement="bottom" container="body" ngbPopover="{{jobDescriptionFormGroup.value.customer}}" triggers="mouseenter:mouseleave" style="max-width:25%;cursor: pointer;"><span style="position:relative;"><b>Customer: {{jobDescriptionFormGroup.value.customer}}</b></span></div>
+
+    <div class="wrap" placement="bottom" container="body" ngbPopover="{{jobDescriptionFormGroup.value.jobTitle}}" triggers="mouseenter:mouseleave" style="max-width:25%;cursor: pointer;"><span style="position:relative;"><b>Job Title: {{jobDescriptionFormGroup.value.jobTitle}}</b></span></div>
+   
+    <div class="wrap" placement="bottom" container="body" ngbPopover="{{jobDescriptionFormGroup.value.jobLocation}}" triggers="mouseenter:mouseleave" style="max-width:25%;cursor: pointer"><span style="position:relative;"><b>Location: {{jobDescriptionFormGroup.value.jobLocation}}</b></span></div>
+
+</div>
+
+
+<form [formGroup]="jobDescriptionFormGroup">
+    <div *ngIf="(!jobDescriptionFormGroup.controls['jobDescription'].dirty && !jobDescriptionFormGroup.value.isJobDescriptionUpdated && !jobDescriptionFormGroup.controls['jobDescription'].touched) && !afterNext" style="padding: 0.2rem; width:21%; position:relative; left:70%; margin-top: 0.5rem; margin-bottom: 0rem;" class="alert alert-danger">
+        Job Description has to be Modified
+    </div>
+
+    <div *ngIf="jobDescriptionFormGroup.controls['jobDescription'].invalid" style="padding: 0.2rem; width:21%; position:relative; left:70%; margin-top: 0.5rem; margin-bottom: 0rem;" class="alert alert-danger">
+        Job Description is required
+    </div>
+    
+    <br *ngIf ="((jobDescriptionFormGroup.controls['jobDescription'].dirty || jobDescriptionFormGroup.value.isJobDescriptionUpdated || jobDescriptionFormGroup.controls['jobDescription'].touched) && !jobDescriptionFormGroup.controls['jobDescription'].invalid) || (!jobDescriptionFormGroup.controls['jobDescription'].invalid && afterNext)" />
+<div class="row" style="margin-top:1%;">
+
+    
+    <div class="col-md-2" style="position:relative;left:3%;color:#121f66;">
+        <span><b>Job Description</b></span>
+    </div>
+
+     <div class="col-md-9">
+         <!-- <div [ngClass]="{'is-invalid': !jobDescriptionFormGroup.controls['jobDescription'].dirty || jobDescriptionFormGroup.controls['jobDescription'].invalid , 'is-valid': jobDescriptionFormGroup.controls['jobDescription'].dirty || jobDescriptionFormGroup.controls['jobDescription'].touched || jobDescriptionFormGroup.controls['jobDescription'].valid}"> -->
+
+
+        <ckeditor [editor]="Editor" formControlName="jobDescription" (change)="onChange($event)"></ckeditor>
+        <!-- <ckeditor [editor]="Editor" [(ngModel)]="jobDescription.jobDescription" (ngModelChange)="OnDescriptionChange($event)"></ckeditor> -->
+        <!-- <textarea [innerHTML]="getInnerHTML(jobDescription.jobDescription)" [(ngModel)]="description" (ngModelChange)="OnJobDescriptionChange($event)" style="height:340px;width:100%;color:#121f66"></textarea> -->
+         <!-- </div> -->
+    </div>
+
+
+</div>
+</form>
+<br />
+<!-- {{jobDescription.jobDescription}} -->
+<div class="row" style="margin-top:0.3%;">
+
+    <div class="col-md-6">
+    <button class="form-control" style="background-color:#121f66; color:white;width:40%;position: relative;left:60%;" (click)="OnPrevious()">Previous</button>
+    </div>
+    <div class="col-md-6">
+        <button *ngIf="afterNext" [ngClass]="{'disableButton': jobDescriptionFormGroup.controls['jobDescription'].invalid}" [disabled]="jobDescriptionFormGroup.controls['jobDescription'].invalid" class="form-control" style="background-color:#121f66; color:white;width:40%; position: relative;" (click)="OnNext()" >Next</button>    
+        
+        <button *ngIf="!afterNext" class="form-control" [ngClass]="{'disableButton': (!jobDescriptionFormGroup.controls['jobDescription'].dirty && !jobDescriptionFormGroup.value.isJobDescriptionUpdated && !jobDescriptionFormGroup.controls['jobDescription'].touched) || jobDescriptionFormGroup.controls['jobDescription'].invalid}" style="background-color:#121f66; color:white;width:40%; position: relative;" (click)="OnNext()" [disabled]="(!jobDescriptionFormGroup.controls['jobDescription'].dirty && !jobDescriptionFormGroup.value.isJobDescriptionUpdated && !jobDescriptionFormGroup.controls['jobDescription'].touched) || jobDescriptionFormGroup.controls['jobDescription'].invalid">Next</button>
+    </div>
+
+</div>
+</div>

@@ -1,0 +1,106 @@
+<div class="section" style="margin-top:1%">
+
+<div class="row container-fluid" style="display:flex;justify-content: center;">
+  <div class="col-md-9" style="display:flex;">
+  <span class="wrap" placement="bottom" container="body" ngbPopover="{{jobDetails.customer}}" triggers="mouseenter:mouseleave" style="color:#121f66;font-weight: bolder;position: relative;font-size: 1em;cursor:pointer;">Customer ID: {{jobDetails.customer}} </span> &nbsp;| 
+  <span class="wrap" placement="bottom" container="body" ngbPopover="{{jobDetails.jobID}}" triggers="mouseenter:mouseleave" style="color:#121f66;font-weight: bolder;position: relative;font-size: 1em;cursor:pointer;">&nbsp;Job ID: {{jobDetails.jobID}} </span> &nbsp;|  
+  <span class="wrap" placement="bottom" container="body" ngbPopover="{{jobDetails.jobTitle}}" triggers="mouseenter:mouseleave" style="color:#121f66;font-weight: bolder;cursor:pointer;">&nbsp;Job Title: {{jobDetails.jobTitle}} </span> &nbsp;|
+  <span class="wrap" placement="bottom" container="body" ngbPopover="{{jobDetails.jobLocation}}" triggers="mouseenter:mouseleave" style="color:#121f66;font-weight: bolder;position: relative;cursor:pointer;">&nbsp;Job Location: {{jobDetails.jobLocation}}</span>
+  
+  <span *ngIf="serviceName == 'Interested Candidates'"  (click)="OnViewMoreClick(content,jobDetails)" style="background-color: #55abe1;color: white;position: relative;left: 1.5%;width: 13%;text-align: center;border-radius: 15px;top:2px;cursor:pointer;display:table;">View more</span> 
+
+  <span *ngIf="serviceName != 'Interested Candidates'"  (click)="OnViewMoreClick(content,jobDetails)" style="background-color: #55abe1;color: white;position: relative;left: 1.5%;width: 13%;text-align: center;border-radius: 15px;top:2px;cursor:pointer;">View more</span> 
+
+</div>
+
+<div class="col-md-1" style="position: absolute;left: 90.3%;margin-top:0.35%">
+  <!-- <span class="fa fa-refresh" (click)="OnRefresh()" style="cursor:pointer;position:static;font-size:1.3em;color:#313D77"></span> -->
+  <div *ngIf="serviceName == 'Interested Candidates'" style="position:relative;left:45%;bottom:9.9px;height:30px;cursor:pointer;">
+    <img src="../../../assets/images/excel-export.png" (click)="ExportToExcel()" style="position:static;height:40px;" />
+  </div>
+</div>
+</div>
+<div class="row">
+    <div class="content" style="margin-top:0.5%;width: 100%;">
+        <div class="example-wrapper" style="width:100%;position:relative;left:2.5%;top:1.9%">
+          <!-- style="height:420px;width:100%;position:relative;left:2.5%;bottom:6%;" -->
+          <!-- style="height:420px;width:100%;position:relative;left:2.5%;top:1.9%" -->
+          <ag-grid-angular
+            #agGrid
+            style="width: 95%; height:415px;"
+            id="myGrid"
+            class="ag-theme-alpine"
+            [columnDefs]="columnDefs"        
+            [defaultColDef]="defaultColDef"
+            [suppressRowClickSelection]="true"              
+            [rowSelection]="rowSelection"
+            [enableRangeSelection]="true"
+            [pagination]="true"
+            [overlayNoRowsTemplate]="noRowsTemplate"
+            [paginationPageSize]="paginationPageSize"
+            [paginationNumberFormatter]="paginationNumberFormatter"
+            [rowData]="candidatesList"
+            (rowSelected)="onRowSelect($event)"
+            (gridReady)="onGridReady($event)"
+          ></ag-grid-angular>
+        </div> 
+      </div>
+</div>
+
+<div class="footer" style="max-height:70px">
+    <div class="row" style="background-color: rgb(18,31,102); height:70px;">    
+      <div class="col-md-10">
+      <div class="example-header" style ="position: absolute;margin-left:2.9%;top:21px;">
+      <span style='color:white;font-weight:bold'>Show</span>&nbsp;  
+        <select (change)="onPageSizeChanged()" id="page-size">
+          <option value="10" selected="">10</option>
+          <option value="100">100</option>
+          <option value="500">500</option>
+          <option value="1000">1000</option>
+        </select>&nbsp;
+        <span style='color:white;font-weight:bold'>entries</span>  
+      </div>
+      </div>
+      <div class='col-md-2' style="position:relative;">
+        <button class="btn" style="background-color:white;width:70%;position:relative;top:15.5px;" (click)="OnPrevious()"><span style="color:black">Back</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="loading-container" style="width: 100%; display: none; height: 100%; overflow: auto; padding: 5px 15%;"
+id="loadingContainer">
+<div class="loader"></div>
+</div>
+
+
+
+<ng-template #content let-modal>
+        
+  <!-- <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div> -->
+
+    <span style="justify-content: flex-end;display: flex;position: relative;right: 1%;top:3.5px;cursor:pointer;" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span>&times;</span>
+    </span>
+  <!-- <div class="modal-content" style="min-height:570px;border:2px solid #313D77;width:90%;margin-left:4.9%;margin-bottom:1.7%;"> -->
+    <div style="border:2px solid #313D77;border-radius: 10px;width: 95%;margin-left: 2.3%;margin-bottom:1.7%;min-height:540px">
+    <div class="modal-body" style="margin-top:0.5%;margin-bottom:1%">
+      <h1 style="color:#313D77;text-align: center;">Job Description</h1>
+      <div style="margin-left:3%" [innerHtml]="jobDetails.jobDescription"></div>
+    </div>
+    </div>
+  <!-- </div> -->
+
+  </ng-template>
+
+
+<style>
+
+</style>

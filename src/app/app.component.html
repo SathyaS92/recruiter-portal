@@ -1,0 +1,102 @@
+<div *ngIf="showHead">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="height:44px;">
+  <div class="d-flex" style="justify-content: space-between; flex:0.96; position:relative;top:2px;">
+    <div class="left-item" style="display: flex;">
+  <img class="navbar-brand" src="../assets/images/logo.png" style="height:35px;"/>
+  <span id="titlespan" style="color: #121F65; font-weight: bolder; white-space: nowrap; position:relative;top:4px;">TALENT ACQUISITION PORTAL</span>
+    </div>
+ <div class="right-item" style="display: flex;position: relative;margin-top:0.4%;">
+ <img src="../assets/images/icon2.jpg" style="height: 35px;border-radius: 20px;position: relative;bottom: 5px;"> <span style="font-weight:bold; color:#121F65">&nbsp; Welcome {{userName}}    |</span>
+  <span (click)="SignOut()" style="font-weight:bold; color:#121F65;cursor:pointer;">&nbsp;Sign out</span>
+ </div>
+  </div>
+</nav>
+
+<div class="row" style="background-color: #55abe1;">
+  <!-- style="background-color: royalblue;" -->
+<div class="d-flex" style="padding: 10px 1px 10px 45px;flex-grow:0.88; justify-content: space-between;">
+<div class="Buttons" style="display:flex; width:34%;align-items: center;">    
+  <button class="newJobsButton btn" [routerLink]="['toBeReviewedJobs']" [ngClass]="classActive == 'Review'?'activeClass':'inactiveClass'" (click)="onReview()" style="width:140%; height: 29px;"><b style="position:relative;bottom:2px;">New Jobs</b></button> 
+  <!-- &nbsp;&nbsp;&nbsp; -->
+  <button class="inProgressButton btn" [routerLink]="['processedJobs']" [ngClass]="classActive == 'Processed'?'activeClass':'inactiveClass'" (click)="onProcessed()" style="width:150%;height: 29px;margin-left:5%;"><b style="position:relative;bottom:2px;">In-Progress Jobs</b></button>
+  <button class="closedButton btn" [routerLink]="['closedJobs']" [ngClass]="classActive == 'Closed'?'activeClass':'inactiveClass'" (click)="onClosed()"  style="width:150%;height: 29px;margin-left:5%;"><b style="position:relative;bottom:2px;">Closed Jobs</b></button>
+  </div>
+<span style="color:#121F65;position: relative;font-size:1.2em;top:2%;left:3.75%;"><b>{{title}}</b></span>
+
+
+
+<span *ngIf="!candidateView" class="fa fa-refresh" (click)="OnRefresh()" style="cursor:pointer;font-size:1.3em;color:white;position: relative;left: 153px;top: 28%;"></span>
+<span *ngIf="candidateView" class="fa fa-refresh" (click)="OnRefresh()" style="cursor:pointer;font-size:1.3em;color:white;position: relative;left: 8.5%;top:26%;"></span>
+
+<div class="date-search" style="display:flex;">
+  <form class="form-inline">
+    <div class="form-group">
+      <div class="input-group">
+        <div *ngIf="clearIcon" style="font-size:1.2em;position: relative;right: 30%;color: red;cursor:pointer;">
+          <span class="fa fa-times-circle" style="background-color: white;border-radius: 1000%;" (click)="clearData()"></span>
+          </div>
+        <input class="form-control" placeholder="yyyy-mm-dd"
+               name="dp" id="date-picker" [(ngModel)]="model" (ngModelChange)="onDatePickerChange()" ngbDatepicker #d="ngbDatepicker"  style="display:none;width:140px; height:35px;">
+               <!-- (ngModelChange)="onDatePickerChange()"-->
+        <div *ngIf="showCalendar" class="input-group-append">
+           <i class="fa fa-calendar" style='cursor:pointer;font-size: 1.5em;color: white;' (click)="d.toggle()"></i>
+           <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;           -->
+        </div>
+      </div>
+    </div>
+  </form>
+<div class="search" style="margin-left:20px;display: flex;align-items: center;">
+ <input style="height:32px;width:100%;border-radius:20px;" id='search-box' [(ngModel)]="searchBox" (ngModelChange)="OnSearch()" type=text class='form-control' placeholder="Search here....">
+ <!-- (ngModelChange)="onFilterTextBoxChanged()" -->
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- <app-to-be-reviewed-jobs></app-to-be-reviewed-jobs> -->
+<router-outlet></router-outlet>
+
+<div class="loading-container" style="width: 100%; display: none; height: 100%; overflow: auto; padding: 5px 15%;"
+id="loadingContainer">
+<div class="loader"></div>
+</div>
+
+<style>
+.newJobsButton{
+  background-color: white;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 15px;
+}
+
+.inProgressButton{
+  background-color: white;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 15px;
+}
+
+.closedButton{
+  background-color: white;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 15px;
+}
+
+.activeClass{
+  color:#121F65;
+  background-color: white;
+}
+
+.inactiveClass{
+  border: white 2px solid;background: #55abe1;color:#121F65; 
+  color:white;
+}
+
+
+
+/* .ngb-dp-month{
+  background: white!important;
+} */
+
+</style>

@@ -1,0 +1,42 @@
+// .wrap {
+//     white-space: nowrap; 
+//     width: auto;   
+//     overflow: hidden;
+//     text-overflow: ellipsis;
+//   }
+
+.wrap {
+    white-space: nowrap; 
+    width: auto;   
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .flex-container {
+    display: flex;
+    //flex-wrap: nowrap;
+    //background-color: DodgerBlue;
+  }
+  
+  .ag-header-cell-label {
+    justify-content: center;
+ }
+
+ .modal-content{
+  position: absolute!important;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  pointer-events: auto;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0,0,0,.2);
+  border-radius: .3rem;
+  outline: 0;
+}
+
+.disableButton{
+  opacity: 0.35; 
+  background: #eee;
+  color: #444;
+}

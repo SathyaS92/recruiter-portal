@@ -1,0 +1,98 @@
+<div class="section" style="height:520px;width: 100%;">
+<div class="row">
+    <h4 style="position:relative;left:3%;color: #313d77;"><b>Step 1 of 3</b></h4>
+</div>
+<div class="row" style="margin-top:1.5%">
+    <h4 style="position:relative;left:43%;color: #313d77;"><b>Job Details</b></h4>
+</div>
+
+<div class="mid-section" style="border:2px dashed  #313d77;width:80%;margin-left:11%;margin-top:2.3%;">
+<form [formGroup]=jobDetailsFormGroup>
+  <div class="item-lists" style="margin-top:2%;position:relative;right:1.5%">
+    <div class="row">
+ 
+ <div class="col-md-6"><span style="position:relative;left:80%">Job ID</span> </div><div class="col-md-6">{{jobDetailsFormGroup.value.jobID}}</div>
+</div>
+<br />
+
+<div class="row">
+    <div class="col-md-6"><span style="position:relative;left:80%">Status</span> </div><div class="col-md-6">{{jobDetailsFormGroup.value.jobAddedDate}}</div>
+</div>
+<br />
+
+<div class="row">
+    <div class="col-md-6"><span style="position:relative;left:80%">Customer</span> </div><div class="col-md-6">{{jobDetailsFormGroup.value.customer}}</div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-6"><span style="position:relative;left:80%">Job Title</span> </div>
+    <div class="col-md-6" style="display:flex;">
+      <!-- <input type="text" id="jobTitle" name="jobTitle" class="form-control" style="width:40%" [(ngModel)]="jobTitle"(ngModelChange)="onJobTitleChange($event)" > -->
+      <!-- [ngClass]="{'is-invalid': !jobDetailsFormGroup.controls['jobTitle'].touched || jobDetailsFormGroup.controls['jobTitle'].untouched}" -->
+      
+      <input *ngIf="afterNext" type="text" [ngClass]="{'is-invalid': jobDetailsFormGroup.controls['jobTitle'].invalid , 'is-valid': (jobDetailsFormGroup.controls['jobTitle'].dirty && jobDetailsFormGroup.hasError('whitespace') && jobDetailsFormGroup.controls['jobTitle'].touched) || jobDetailsFormGroup.controls['jobTitle'].valid}" id="jobTitle" name="jobTitle" class="form-control" style="width:40%" formControlName="jobTitle" >
+
+      <input *ngIf="!afterNext" type="text" [ngClass]="{'is-invalid': (!jobDetailsFormGroup.controls['jobTitle'].dirty && !jobDetailsFormGroup.hasError('whitespace') && !jobDetailsFormGroup.controls['jobTitle'].touched) || jobDetailsFormGroup.controls['jobTitle'].invalid , 'is-valid': (jobDetailsFormGroup.controls['jobTitle'].dirty && jobDetailsFormGroup.hasError('whitespace')  && jobDetailsFormGroup.controls['jobTitle'].touched) || jobDetailsFormGroup.controls['jobTitle'].valid}" id="jobTitle" name="jobTitle" class="form-control" style="width:40%" formControlName="jobTitle" >          
+      
+      <div *ngIf="(( !jobDetailsFormGroup.controls['jobTitle'].dirty && !jobDetailsFormGroup.hasError('whitespace') && !jobDetailsFormGroup.controls['jobTitle'].touched) && !afterNext)" style="padding: 0.4rem;margin-left: 1rem;margin-bottom: 0rem;" class="alert alert-danger">             
+        Job Title has to be validated.   
+      </div>   
+      <span *ngIf="jobDetailsFormGroup.controls['jobTitle'].invalid"  style="padding: 0.4rem;margin-left: 1rem;margin-bottom: 0rem;" class="alert alert-danger">
+        Job Title is required
+      </span>
+        <!-- <div ngbDropdown class="d-inline-block">
+            <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Toggle dropdown</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <button class="dropdown-item">Action - 1</button>
+              <button class="dropdown-item">Another Action</button>
+              <button class="dropdown-item">Something else is here</button>
+            </div>
+          </div> -->
+
+    <!-- <select class="form-control" style="width:40%">
+        <option value="" selected>Application Engineer</option>
+        <option value="">Application Test Engineer</option>
+        <option value="">Application Manager</option>
+  </select> -->
+</div>
+</div>
+
+<br/>
+<div class="row">
+    <div class="col-md-6"><span style="position:relative;left:80%">Location</span> </div>
+    <div class="col-md-6" style="display:flex;">
+
+        <input *ngIf="afterNext" type="text" [ngClass]="{'is-invalid': jobDetailsFormGroup.controls['jobLocation'].invalid , 'is-valid': (jobDetailsFormGroup.controls['jobLocation'].dirty && jobDetailsFormGroup.hasError('whitespace') && jobDetailsFormGroup.controls['jobLocation'].touched) || jobDetailsFormGroup.controls['jobLocation'].valid}" class="form-control" style="width:40%" formControlName="jobLocation">
+
+        <input *ngIf="!afterNext" type="text" [ngClass]="{'is-invalid': (!jobDetailsFormGroup.controls['jobLocation'].dirty && !jobDetailsFormGroup.hasError('whitespace') && !jobDetailsFormGroup.controls['jobLocation'].touched) || jobDetailsFormGroup.controls['jobLocation'].invalid , 'is-valid': (jobDetailsFormGroup.controls['jobLocation'].dirty && jobDetailsFormGroup.hasError('whitespace') && jobDetailsFormGroup.controls['jobLocation'].touched) || jobDetailsFormGroup.controls['jobLocation'].valid}" class="form-control" style="width:40%" formControlName="jobLocation">
+
+        <!-- (ngModelChange)="onJobLocationChange($event)" -->
+        <span *ngIf="((!jobDetailsFormGroup.controls['jobLocation'].dirty && !jobDetailsFormGroup.hasError('whitespace') && !jobDetailsFormGroup.controls['jobLocation'].touched) && !afterNext)" style="padding: 0.4rem;margin-left: 1rem;margin-bottom: 0rem;" class="alert alert-danger">
+          Job Location has to be validated.      
+        </span>
+        <span *ngIf="jobDetailsFormGroup.controls['jobLocation'].invalid"  style="padding: 0.4rem;margin-left: 1rem;margin-bottom: 0rem;" class="alert alert-danger">
+          Job Location is required
+        </span>
+    </div>
+</div>
+</div>
+<br />
+</form>
+  </div>
+  <div class="row" style="margin-top:4.8%">
+    <button *ngIf="afterNext" type="button" [disabled]="((jobDetailsFormGroup.controls['jobTitle'].invalid) || (jobDetailsFormGroup.controls['jobLocation'].invalid))" class="btn btn-outline-dark" style="background-color: #121f66; color:white;width: 30%;position: relative;left: 35%;bottom:80%;" (click)="OnNext()">Next</button>
+    
+    <button *ngIf="!afterNext" type="button" [disabled]="(( !jobDetailsFormGroup.controls['jobTitle'].touched && !jobDetailsFormGroup.controls['jobTitle'].touched || jobDetailsFormGroup.controls['jobTitle'].invalid) || ( !jobDetailsFormGroup.controls['jobLocation'].dirty && !jobDetailsFormGroup.controls['jobLocation'].touched || jobDetailsFormGroup.controls['jobLocation'].invalid))" class="btn btn-outline-dark" style="background-color: #121f66; color:white;width: 30%;position: relative;left: 35%;bottom:80%;" (click)="OnNext()">Next</button>
+  </div>
+  </div>
+
+
+<style>
+    .modal-content {
+    /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+    height:"430px"!important;
+    /* To center horizontally */
+    margin: 0 auto;
+    pointer-events: all;
+}
+    </style>

@@ -1,0 +1,74 @@
+<div class="section" style="height:560px;">
+<div class="flex-container" style="justify-content: space-between;">
+    <h4 style="color:#121f66;position:relative;left:1.5%;max-width: 14%;"><b>Step 3 of 3</b></h4>
+
+    <div class="wrap" placement="bottom" container="body" ngbPopover="{{candidateSelectionFormGroup.value.jobID}}" triggers="mouseenter:mouseleave" style="max-width: 11%;"><span style="position:relative;"><b>Job ID: {{candidateSelectionFormGroup.value.jobID}}</b></span> </div>
+      
+    <div class="wrap" placement="bottom" container="body" ngbPopover="{{candidateSelectionFormGroup.value.customer}}" triggers="mouseenter:mouseleave" style="max-width:25%;cursor:pointer;"><span style="position:relative;"><b>Customer: {{candidateSelectionFormGroup.value.customer}}</b></span></div>
+
+    <div class="wrap" placement="bottom" container="body" ngbPopover="{{candidateSelectionFormGroup.value.jobTitle}}" triggers="mouseenter:mouseleave" style="max-width: 25%;cursor:pointer;"><span style="position:relative;"><b>Job Title: {{candidateSelectionFormGroup.value.jobTitle}}</b></span></div>
+   
+    <div class="wrap" placement="bottom" container="body" ngbPopover="{{candidateSelectionFormGroup.value.jobLocation}}" triggers="mouseenter:mouseleave" style="max-width:25%;cursor:pointer;"><span style="position:relative;"><b>Location: {{candidateSelectionFormGroup.value.jobLocation}}</b></span></div>    
+
+</div>
+
+<div class="row">
+  <div class="container-fluid" style="display: flex;justify-content: flex-end;width: 100%;">
+  <input style="height:32px;width:15%;border-radius:20px;position:relative;right:1.5%" id='search-box' [(ngModel)]="searchBox" (ngModelChange)="OnSearch()" type=text class='form-control' placeholder="Search here....">
+  <img src="../../../assets/images/excel-export.png" (click)="ExportToExcel()" style="cursor:pointer;position:relative;height:40px;margin-right:2.3%;bottom:6%;" />
+</div> 
+  <div class="mid-section" style="margin-top:initial;position:relative;width: 100%;">
+        <div class="example-wrapper" style="height:400px;width:100%;position:relative;left:2.5%">
+          <ag-grid-angular
+            #agGrid
+            style="width: 95%; height: 96%;"
+            id="myGrid"
+            [gridOptions]="gridOptions"
+            class="ag-theme-alpine"
+            [columnDefs]="columnDefs"        
+            [defaultColDef]="defaultColDef"
+            [suppressRowClickSelection]="true"              
+            [rowSelection]="rowSelection"            
+            [enableRangeSelection]="true"
+            [pagination]="true"
+            [overlayNoRowsTemplate]="noRowsTemplate"
+            [paginationPageSize]="paginationPageSize"
+            [paginationNumberFormatter]="paginationNumberFormatter"
+            [rowData]="candidatesList"
+            (rowSelected)="onRowSelect($event)"
+            (gridReady)="onGridReady($event)"
+          ></ag-grid-angular>
+        </div> 
+      </div>
+</div>
+
+<div class="row" style="margin-top:1.5%;">
+ <div class="col-md-4" style="position: relative;left:1.5%;">
+  <div class="example-header" style ="position: relative;left: 1.4%;top: 1.6%;">
+    <span style='color:#121F66;font-weight:bold'>Show</span>&nbsp;  
+      <select (change)="onPageSizeChanged()" id="page-size-selection">
+        <option value="10" selected="">10</option>
+        <option value="100">100</option>
+        <option value="500">500</option>
+        <option value="1000">1000</option>
+      </select>&nbsp;
+      <span style='color:#121F66;font-weight:bold'>entries</span>  
+    </div>
+  </div>
+  <div class="col-md-4" style="position: absolute;left:12%">
+  <button class="form-control" (click)="OnPrevious()" style="background-color:#121f66;color:white;width:60%;position:relative;left:60%;">Previous</button>
+  </div>
+  <div class="col-md-4" style="position: relative;left:17%">
+  <button *ngIf="rowCount==0" class="form-control" class="disableButton" [disabled]=true (click)="NotifyCandidates()" style="background-color:#121f66;color:white;width:60%;position:relative;height: 126%;border-radius: 5px;">Notify Candidates</button>
+  <button *ngIf="rowCount>0" class="form-control" (click)="NotifyCandidates()" style="background-color:#121f66;color:white;width:60%;position:relative;">Notify Candidates ({{rowCount}})</button>  
+</div>
+</div>
+
+
+
+</div>
+
+<div class="loading-container" style="width: 100%; display: none; height: 100%; padding: 5px 15%;"
+id="loadingCandidateSelection">
+<div class="loader" style="top:38%;"></div>
+</div>

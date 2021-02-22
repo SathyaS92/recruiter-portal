@@ -1,0 +1,31 @@
+.dropdown-menu .show{
+    background-color: #626B71!important;
+}
+
+// .modal-content{
+//     position: absolute!important;
+//     display: flex;
+//     flex-direction: column;
+//     width: 100%;
+//     pointer-events: auto;
+//     background-color: #fff;
+//     background-clip: padding-box;
+//     border: 1px solid rgba(0,0,0,.2);
+//     border-radius: .3rem;
+//     outline: 0;
+//     min-height: 600px;
+// }
+
+.modal-content{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: .3rem;
+    outline: 0;
+    min-height: 600px;
+}

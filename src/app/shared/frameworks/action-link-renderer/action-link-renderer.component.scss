@@ -1,0 +1,38 @@
+// .vertical-alignment-helper {
+//     display:table;
+//     height: 100%;
+//     width: 100%;
+//     pointer-events:none; /* This makes sure that we can still click outside of the modal to close it */
+// }
+// .vertical-align-center {
+//     /* To center vertically */
+//     display: table-cell;
+//     vertical-align: middle;
+//     pointer-events:none;
+// }
+
+// .modal-dialog{
+//     position: absolute;
+//     //display: table !important; 
+//     //overflow-y: auto;    
+//     //overflow-x: auto;
+//     //width: auto !important;
+//     //min-width: 300px!important;
+// }
+
+// .modal-content{
+//     position: absolute!important;
+// }
+
+//   .modal-content{
+//     position: absolute!important;
+//     display: flex;
+//     flex-direction: column;
+//     width: 100%;
+//     pointer-events: auto;
+//     background-color: #fff;
+//     background-clip: padding-box;
+//     border: 1px solid rgba(0,0,0,.2);
+//     border-radius: .3rem;
+//     outline: 0;
+// }

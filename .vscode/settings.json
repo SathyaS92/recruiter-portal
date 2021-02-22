@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/268f8d8c-f92c-49e8-b65d-8dc33aab8c0e/resourceGroups/rb_dev/providers/Microsoft.Web/sites/recruiter-portal-dev",
+    "appService.deploySubpath": "dist\\recruiter-portal"
+}

@@ -1,0 +1,51 @@
+<div class="logincontainer" style="display:block; height:131%;">
+    <!-- <div class="text-child" style="position:absolute;top:10%;left:15%">
+        <span style="color: white; font-size: 45px; font-weight: bolder;">
+            DISYS TALENT
+            <br>
+            ACQUISITION
+        </span>
+    </div> -->
+    <div class="d-flex justify-content-center h-100">
+        <div class="card" style="border-radius: 1em;height:auto;">
+            <div class="card-header" style="background:white;border:none;border-radius: 1em;max-height:100px;">
+                <div style="height: auto; margin-top: 25px;">
+                    <img src="https://storage.googleapis.com/disys-poc/TalentAquisition/images/logo.png" style="width: 70%; margin-left: 15%;">
+                </div>
+                <!-- <h3>Sign In</h3> -->
+                <!-- <div class="d-flex justify-content-end social_icon"> -->
+                <!-- <span><i class="fab fa-facebook-square"></i></span> -->
+                <!-- <span><i class="fab fa-google-plus-square"></i></span> -->
+                <!-- <span><i class="fab fa-twitter-square"></i></span> -->
+                <!-- </div> -->
+            </div>
+            <div class="card-body" style="padding:0">
+                <!-- <div style="text-align: center; margin-top: -5%; color: #121F65"><span style="white-space:pre;">Enter the six digit code <br />&nbsp;which you have received.</span></div> -->
+               <form [formGroup]="loginForm" (ngSubmit)="OnLogin()">
+                <div class="row" *ngIf="showValidation" style="justify-content: center;"><span style="color:red;">Username/Password is incorrect!</span></div>
+                <div style="width: 100%;position: relative;">
+                    <div class="row">  
+                        <label style="margin-left:40%;position:relative;top:20px;font-weight: bold;color:#121F65">Email ID</label>
+                    <input type="text" formControlName="userName"  placeholder="Email ID" style="height:30px;border: none; border-bottom: 1px solid gray; width: 65%;margin-left: 18%;margin-top: 8%;">
+                        </div>                        
+                <div class="row" style="position: relative;top: 10px;">   
+                    <label style="margin-left:38%;position:relative;top:20px;font-weight: bold;color:#121F65">Password</label>                     
+                    <input type="password"  formControlName="password" placeholder="Password" style="height:30px;border: none; border-bottom: 1px solid gray; width: 65%;margin-left: 18%;margin-top: 8%;">
+                </div>
+                        </div>
+                <div id="nextbtndiv" style="padding:32px 32px 32px 32px;justify-content:center;display:flex;">
+                    <button id="nxtbtn" style="background: #121F65; padding: 3%; color: white; width: 50%; cursor: pointer;margin-top: 4.5%;">
+                        Login
+                    </button>
+                </div>
+            </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="loading-container" style="width: 100%; display: none; height: 100%; overflow: auto; padding: 5px 15%;"
+id="loadingContainer">
+<div class="loader"></div>
+</div>

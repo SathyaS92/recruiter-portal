@@ -1,0 +1,27 @@
+<img *ngIf="params.value != null" src="../../../assets/images/fileImage.png" (click)="OnResumeClick(content,params)" style="cursor:pointer;height:90%;">
+
+<ng-template #content let-modal>
+        
+  <!-- <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div> -->
+    <span style="justify-content: flex-end;display: flex;position: relative;right: 1%;top:3.5px;cursor:pointer;" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span>&times;</span>
+    </span>
+    <!-- <div class="modal-content" style="min-height:570px;border:2px solid #313D77;width:90%;margin-left:4.9%;margin-bottom:1.7%;"> -->
+    <div style="border:2px solid #313D77;border-radius: 10px;margin-bottom:1.7%; width: 90%;margin-left: 4.9%;">
+      <div class="modal-body" style="margin-top:0.5%;margin-bottom:1%">
+      <h1 style="color:#313D77;text-align: center;">Bullhorn Resume</h1>
+      <div style="margin-left:3%" [innerHtml]="values"></div>
+      </div>
+ 
+    </div>
+    <!-- </div> -->
+    <div class="custom">
+    </div>
+  </ng-template>
+
+  

@@ -1,0 +1,19 @@
+// ngb-datepicker {
+//     .ngb-dp-content .ngb-dp-months{
+//         background-color: white!important;
+//     }
+// }
+
+::ng-deep div.ngb-dp-content{
+    background-color: white!important;
+}
+
+.dropdown-toggle::after {
+    color: white!important;
+    position:relative;
+    top:2.1px;
+}
+
+// ::ng-deep div.ag-root-wrapper div.ag-root-wrapper-body div.ag-root div.ag-header{
+//     background-color: #121f66;
+// }
